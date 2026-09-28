@@ -9,6 +9,9 @@ export default function ActivitiesPage() {
 
   const syncActivities = async () => {
     const data = await getActivities();
+
+    console.log("ACTIVITIES DATA:", data);
+
     setActivities(data);
   };
 

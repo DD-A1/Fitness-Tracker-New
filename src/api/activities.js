@@ -6,11 +6,13 @@ export async function getActivities() {
     const response = await fetch(API + "/activities");
     const result = await response.json();
 
+    console.log("FULL API RESPONSE:", result);
+
     if (!response.ok) {
       throw Error(result.message);
     }
 
-    return result.data;
+    return result;
   } catch (error) {
     console.error(error);
     return [];
