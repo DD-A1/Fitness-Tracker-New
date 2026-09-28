@@ -8,7 +8,7 @@ import { createContext, useContext, useState } from "react";
 
 // import.meta.env allows us to access environment variables,
 // which are defined in a file named .env
-const API = import.meta.env.VITE_API;
+const API = "https://fitnesstrac-kr.herokuapp.com/api";
 
 const AuthContext = createContext();
 
@@ -35,6 +35,7 @@ export function AuthProvider({ children }) {
       body: JSON.stringify(credentials),
     });
     const result = await response.json();
+
     if (!response.ok) {
       throw Error(result.message);
     }
@@ -47,6 +48,7 @@ export function AuthProvider({ children }) {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useAuth() {
   const context = useContext(AuthContext);
   if (!context) throw Error("useAuth must be used within AuthProvider");
